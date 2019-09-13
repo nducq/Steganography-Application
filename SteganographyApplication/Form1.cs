@@ -1,7 +1,7 @@
 ﻿/* Main Author: Nicholas Ducq
  * 
  * Initial Github Upload - 9/11/2019
- * Version 0.5.1
+ * Version 0.5.2
  * 
  */
 
