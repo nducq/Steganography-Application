@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace SteganographyProject
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.

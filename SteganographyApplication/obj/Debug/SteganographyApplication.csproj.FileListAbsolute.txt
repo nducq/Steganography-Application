@@ -2,9 +2,9 @@ C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\bin
 C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\bin\Debug\SteganographyProject.exe
 C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\bin\Debug\SteganographyProject.pdb
 C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\obj\Debug\SteganographyApplication.csprojAssemblyReference.cache
-C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\obj\Debug\WindowsFormsApp1.Form1.resources
 C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\obj\Debug\SteganographyProject.Properties.Resources.resources
 C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\obj\Debug\SteganographyApplication.csproj.GenerateResource.cache
 C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\obj\Debug\SteganographyApplication.csproj.CoreCompileInputs.cache
 C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\obj\Debug\SteganographyProject.exe
 C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\obj\Debug\SteganographyProject.pdb
+C:\Users\Nick\source\repos\SteganographyApplication\SteganographyApplication\obj\Debug\SteganographyProject.MainForm.resources

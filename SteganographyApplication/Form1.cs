@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 
-namespace WindowsFormsApp1
+namespace SteganographyProject
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
+        //Initialize class variables
         private enum hashTypes { NONE, MD5, SHA256};
         //private RSAParameters publicKey;
         //private RSAParameters privateKey;
@@ -27,7 +28,7 @@ namespace WindowsFormsApp1
         private int keySize = 1024;
         private hashTypes selectedHash = hashTypes.NONE;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
