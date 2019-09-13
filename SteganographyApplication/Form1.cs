@@ -154,11 +154,6 @@ namespace SteganographyProject
 
                 encodePixelArray(0, pixelArray, msgSizeEncoded);
                 encodePixelArray(24, pixelArray, encryptedMessage);
-
-                //for (int i = 0; i < encryptedMessage.Length; i++)
-                //{
-                //pixelArray[i] = Color.FromArgb(pixelArray[i].A, encryptedMessage[i], pixelArray[i].G, pixelArray[i].B);
-                //}
             }
 
             //Export pixel array
@@ -264,6 +259,7 @@ namespace SteganographyProject
                 }
                 catch (IOException)
                 {
+                    MessageBox.Show("Unable to open image!", "Import Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             System.Console.WriteLine(result); // <-- For debugging use.
@@ -293,22 +289,26 @@ namespace SteganographyProject
                 }
             }
         }
-
+        
+        //Encodes an odd bit
         private Color encodeOdd(Color c) {
             //return Color.FromArgb(c.A, ((c.R % 2 == 1) ? c.R : c.R - 1), c.G, c.B);
-            return Color.FromArgb(c.A, 255, 0, 0);
+            return Color.FromArgb(c.A, ((c.R / 2) * 2) + 1, c.G, c.B);
         }
 
+        //Encodes an even bit
         private Color encodeEven(Color c) {
             //return Color.FromArgb(c.A, ((c.R % 2 == 0) ? c.R : c.R - 1), c.G, c.B);
-            return Color.FromArgb(c.A, 0, 0, 255);
+            return Color.FromArgb(c.A, (c.R / 2) * 2, c.G, c.B);
         }
 
+        //Decodes a bit, returning 'true' if it is odd or 'false' if it is even
         public bool decodePixel(Color c)
         {
-            return c.B == 0 && c.R == 255;
+            return (c.R % 2) == 1;
         }
 
+        //Decodes 8 bits, returning a full byte
         public byte decodeByte(int index)
         {
             return decodeByte(index, pixelArray);
