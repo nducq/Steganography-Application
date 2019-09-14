@@ -22,11 +22,12 @@ using SteganographyProject.Encoders;
 
 namespace SteganographyProject
 {
+    enum hashTypes { NONE, MD5, SHA256, SHA512 };
+
     public partial class MainForm : Form
     {
         //Initialize class variables
-
-        private enum hashTypes { NONE, MD5, SHA256};
+        
         //private RSAParameters publicKey;
         //private RSAParameters privateKey;
         private Color[] pixelArray = new Color[0];
@@ -52,11 +53,6 @@ namespace SteganographyProject
         {
             rsa = new RSACryptoServiceProvider(keySize, csp);
             rsa.PersistKeyInCsp = true;
-            //RSAParameters privateKey = rsa.ExportParameters(true);
-            //RSAParameters publicKey = rsa.ExportParameters(false);
-            
-            //this.privateKey = privateKey;
-            //this.publicKey = publicKey;
         }
 
         //Use the RSA CSP to encrypt a byte array message
@@ -193,6 +189,11 @@ namespace SteganographyProject
             }
         }
 
+        private void encodePixelArray(Color[] pixelArray, byte[] message)
+        {
+            this.pixelArray = UniformEncoder.encodeMessage(pixelArray, message);
+        }
+
         //Button listener functions:
         private void loadKeyClick(object sender, EventArgs e)
         {
@@ -259,34 +260,6 @@ namespace SteganographyProject
                 }
             }
             System.Console.WriteLine(result); // <-- For debugging use.
-        }
-
-        private void encodePixelArray(Color[] pixelArray, byte[] message)
-        {
-            this.pixelArray = UniformEncoder.encodeMessage(pixelArray, message);
-            /*
-            for (int i = 0; i < message.Length; i++)
-            {
-                byte character = message[i];
-                int offset = (i * charWidth) + bitOffset;
-                Console.WriteLine("Encoding byte: " + character + " at index: " + offset);
-
-                for (int p = 0; p < charWidth; p++)
-                {
-                    int mask = 128 / (int)(Math.Pow(2, p));
-                    Console.WriteLine("Encoding bit: " + ((character & mask) != 0 ? "0x" + mask : "0") + " at index: " + (offset + p));
-
-                    if ((character & mask) != 0)
-                    {
-                        pixelArray[offset + p] = encodeOdd(pixelArray[offset + p]);
-                    }
-                    else
-                    {
-                        pixelArray[offset + p] = encodeEven(pixelArray[offset + p]);
-                    }
-                }
-            }
-            */
         }
 
         //Close the form

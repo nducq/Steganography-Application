@@ -40,7 +40,6 @@ namespace SteganographyProject
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.hash = new System.Windows.Forms.Label();
             this.oaepPadding = new System.Windows.Forms.CheckBox();
             this.encryptedOutputTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,11 +61,15 @@ namespace SteganographyProject
             this.exportPublicKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptionAlgorithmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rSAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encodingAlgorithmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.noHash = new System.Windows.Forms.RadioButton();
-            this.md5Hash = new System.Windows.Forms.RadioButton();
-            this.sha256Hash = new System.Windows.Forms.RadioButton();
+            this.messageHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mD5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sHA256ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sHA512ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -75,7 +78,6 @@ namespace SteganographyProject
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -178,8 +180,6 @@ namespace SteganographyProject
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.panel6);
-            this.panel3.Controls.Add(this.hash);
             this.panel3.Controls.Add(this.oaepPadding);
             this.panel3.Controls.Add(this.encryptedOutputTextBox);
             this.panel3.Controls.Add(this.label3);
@@ -191,15 +191,6 @@ namespace SteganographyProject
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(224, 372);
             this.panel3.TabIndex = 4;
-            // 
-            // hash
-            // 
-            this.hash.AutoSize = true;
-            this.hash.Location = new System.Drawing.Point(107, 275);
-            this.hash.Name = "hash";
-            this.hash.Size = new System.Drawing.Size(35, 13);
-            this.hash.TabIndex = 8;
-            this.hash.Text = "Hash:";
             // 
             // oaepPadding
             // 
@@ -361,9 +352,33 @@ namespace SteganographyProject
             // 
             // settingsToolStripMenuItem
             // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.encryptionAlgorithmToolStripMenuItem,
+            this.encodingAlgorithmToolStripMenuItem,
+            this.messageHashingToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.settingsToolStripMenuItem.Text = "Settings ";
+            // 
+            // encryptionAlgorithmToolStripMenuItem
+            // 
+            this.encryptionAlgorithmToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rSAToolStripMenuItem});
+            this.encryptionAlgorithmToolStripMenuItem.Name = "encryptionAlgorithmToolStripMenuItem";
+            this.encryptionAlgorithmToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.encryptionAlgorithmToolStripMenuItem.Text = "Encryption Algorithm";
+            // 
+            // rSAToolStripMenuItem
+            // 
+            this.rSAToolStripMenuItem.Name = "rSAToolStripMenuItem";
+            this.rSAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rSAToolStripMenuItem.Text = "Asymmetric RSA";
+            // 
+            // encodingAlgorithmToolStripMenuItem
+            // 
+            this.encodingAlgorithmToolStripMenuItem.Name = "encodingAlgorithmToolStripMenuItem";
+            this.encodingAlgorithmToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.encodingAlgorithmToolStripMenuItem.Text = "Encoding Algorithm";
             // 
             // helpToolStripMenuItem
             // 
@@ -371,53 +386,42 @@ namespace SteganographyProject
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // panel6
+            // messageHashingToolStripMenuItem
             // 
-            this.panel6.Controls.Add(this.sha256Hash);
-            this.panel6.Controls.Add(this.md5Hash);
-            this.panel6.Controls.Add(this.noHash);
-            this.panel6.Location = new System.Drawing.Point(105, 291);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(116, 80);
-            this.panel6.TabIndex = 9;
+            this.messageHashingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.noneToolStripMenuItem,
+            this.mD5ToolStripMenuItem,
+            this.sHA256ToolStripMenuItem,
+            this.sHA512ToolStripMenuItem});
+            this.messageHashingToolStripMenuItem.Name = "messageHashingToolStripMenuItem";
+            this.messageHashingToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.messageHashingToolStripMenuItem.Text = "Message Hashing";
             // 
-            // noHash
+            // noneToolStripMenuItem
             // 
-            this.noHash.AutoSize = true;
-            this.noHash.Location = new System.Drawing.Point(4, 4);
-            this.noHash.Name = "noHash";
-            this.noHash.Size = new System.Drawing.Size(51, 17);
-            this.noHash.TabIndex = 0;
-            this.noHash.TabStop = true;
-            this.noHash.Text = "None";
-            this.noHash.UseVisualStyleBackColor = true;
-            this.noHash.CheckedChanged += new System.EventHandler(this.noHash_CheckedChanged);
+            this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
+            this.noneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noneToolStripMenuItem.Text = "None";
             // 
-            // md5Hash
+            // mD5ToolStripMenuItem
             // 
-            this.md5Hash.AutoSize = true;
-            this.md5Hash.Location = new System.Drawing.Point(4, 28);
-            this.md5Hash.Name = "md5Hash";
-            this.md5Hash.Size = new System.Drawing.Size(48, 17);
-            this.md5Hash.TabIndex = 1;
-            this.md5Hash.TabStop = true;
-            this.md5Hash.Text = "MD5";
-            this.md5Hash.UseVisualStyleBackColor = true;
-            this.md5Hash.CheckedChanged += new System.EventHandler(this.md5Hash_CheckedChanged);
+            this.mD5ToolStripMenuItem.Name = "mD5ToolStripMenuItem";
+            this.mD5ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mD5ToolStripMenuItem.Text = "MD5";
             // 
-            // sha256Hash
+            // sHA256ToolStripMenuItem
             // 
-            this.sha256Hash.AutoSize = true;
-            this.sha256Hash.Location = new System.Drawing.Point(4, 51);
-            this.sha256Hash.Name = "sha256Hash";
-            this.sha256Hash.Size = new System.Drawing.Size(68, 17);
-            this.sha256Hash.TabIndex = 2;
-            this.sha256Hash.TabStop = true;
-            this.sha256Hash.Text = "SHA 256";
-            this.sha256Hash.UseVisualStyleBackColor = true;
-            this.sha256Hash.CheckedChanged += new System.EventHandler(this.sha256Hash_CheckedChanged);
+            this.sHA256ToolStripMenuItem.Name = "sHA256ToolStripMenuItem";
+            this.sHA256ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sHA256ToolStripMenuItem.Text = "SHA 256";
             // 
-            // Form1
+            // sHA512ToolStripMenuItem
+            // 
+            this.sHA512ToolStripMenuItem.Name = "sHA512ToolStripMenuItem";
+            this.sHA512ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sHA512ToolStripMenuItem.Text = "SHA 512";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -426,7 +430,7 @@ namespace SteganographyProject
             this.Controls.Add(this.tableLayoutPanel1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -440,8 +444,6 @@ namespace SteganographyProject
             this.panel5.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -480,11 +482,14 @@ namespace SteganographyProject
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
         private Button decodeMessage;
-        private Label hash;
-        private Panel panel6;
-        private RadioButton sha256Hash;
-        private RadioButton md5Hash;
-        private RadioButton noHash;
+        private ToolStripMenuItem encryptionAlgorithmToolStripMenuItem;
+        private ToolStripMenuItem rSAToolStripMenuItem;
+        private ToolStripMenuItem encodingAlgorithmToolStripMenuItem;
+        private ToolStripMenuItem messageHashingToolStripMenuItem;
+        private ToolStripMenuItem noneToolStripMenuItem;
+        private ToolStripMenuItem mD5ToolStripMenuItem;
+        private ToolStripMenuItem sHA256ToolStripMenuItem;
+        private ToolStripMenuItem sHA512ToolStripMenuItem;
     }
 }
 
