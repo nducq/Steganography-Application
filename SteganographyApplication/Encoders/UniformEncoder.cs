@@ -11,28 +11,37 @@ namespace SteganographyProject.Encoders
     {
         new public static Color[] encodeMessage(Color[] pixelArray, Byte[] message)
         {
+            encodeByte(0, (byte)((message.Length >> 8) & 0xFF), pixelArray);
+            encodeByte(1, (byte)((message.Length) & 0xFF), pixelArray);
+            encodeByte(2, 0xAA, pixelArray);
             for (int i = 0; i < message.Length; i++)
             {
                 byte character = message[i];
-                int offset = (i * charWidth);
+                int offset = (i * charWidth) + 3;
                 Console.WriteLine("Encoding byte: " + character + " at index: " + offset);
 
-                for (int p = 0; p < charWidth; p++)
-                {
-                    int mask = 128 / (int)(Math.Pow(2, p));
-                    Console.WriteLine("Encoding bit: " + ((character & mask) != 0 ? "0x" + mask : "0") + " at index: " + (offset + p));
-
-                    if ((character & mask) != 0)
-                    {
-                        pixelArray[offset + p] = encodeOdd(pixelArray[offset + p]);
-                    }
-                    else
-                    {
-                        pixelArray[offset + p] = encodeEven(pixelArray[offset + p]);
-                    }
-                }
+                encodeByte(i + 3, character, pixelArray);
             }
             return pixelArray;
+        }
+
+        //Encodes 8 bits
+        private static void encodeByte(int index, byte character, Color[] pixelArray)
+        {
+            for (int p = 0; p < charWidth; p++)
+            {
+                int mask = 128 / (int)(Math.Pow(2, p));
+                Console.WriteLine("Encoding bit: " + ((character & mask) != 0 ? "0x" + mask : "0") + " at index: " + ((index * 8) + p));
+
+                if ((character & mask) != 0)
+                {
+                    pixelArray[(index * 8) + p] = encodeOdd(pixelArray[(index * 8) + p]);
+                }
+                else
+                {
+                    pixelArray[(index * 8) + p] = encodeEven(pixelArray[(index * 8) + p]);
+                }
+            }
         }
 
         //Encodes an odd bit
