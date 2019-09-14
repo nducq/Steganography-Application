@@ -1,7 +1,7 @@
 ﻿/* Main Author: Nicholas Ducq
  * 
  * Initial Github Upload - 9/11/2019
- * Version 0.5.2
+ * Version 0.5.3
  * 
  */
 
@@ -17,12 +17,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using SteganographyProject;
+using SteganographyProject.Encoders;
 
 namespace SteganographyProject
 {
     public partial class MainForm : Form
     {
         //Initialize class variables
+
         private enum hashTypes { NONE, MD5, SHA256};
         //private RSAParameters publicKey;
         //private RSAParameters privateKey;
@@ -38,7 +41,6 @@ namespace SteganographyProject
         private int keySize = 1024;
         //TBD - Hash the encrypted message for verification purposes
         private hashTypes selectedHash = hashTypes.NONE;
-
 
         public MainForm()
         {
@@ -152,8 +154,8 @@ namespace SteganographyProject
                 short messageSize = (short)encryptedMessage.Length;
                 byte[] msgSizeEncoded = { (byte)(messageSize >> 8), (byte)messageSize, 0xAA };
 
-                encodePixelArray(0, pixelArray, msgSizeEncoded);
-                encodePixelArray(24, pixelArray, encryptedMessage);
+                //encodePixelArray(0, pixelArray, msgSizeEncoded);
+                encodePixelArray(pixelArray, encryptedMessage);
             }
 
             //Export pixel array
@@ -176,15 +178,9 @@ namespace SteganographyProject
         private void decodeImage()
         {
             bool padding = oaepPadding.Checked;
-            int messageSize = (((int)decodeByte(0)) << 8) + ((int)decodeByte(1));
-            int hash = (int)decodeByte(2);
-
             if (rsa != null)
             {
-                byte[] message = new byte[messageSize];
-
-                for (int i = 0; i < messageSize; i++)
-                    message[i] = decodeByte(3 + i);
+                Byte[] message = UniformEncoder.decodeMessage(pixelArray);
 
                 if (rsa.PublicOnly)
                     encryptedOutputTextBox.Text = "*** Public Fields Only ***\n*** Decryption Not Possible***";
@@ -265,8 +261,10 @@ namespace SteganographyProject
             System.Console.WriteLine(result); // <-- For debugging use.
         }
 
-        private void encodePixelArray(int bitOffset, Color[] pixelArray, byte[] message)
+        private void encodePixelArray(Color[] pixelArray, byte[] message)
         {
+            this.pixelArray = UniformEncoder.encodeMessage(pixelArray, message);
+            /*
             for (int i = 0; i < message.Length; i++)
             {
                 byte character = message[i];
@@ -288,43 +286,7 @@ namespace SteganographyProject
                     }
                 }
             }
-        }
-        
-        //Encodes an odd bit
-        private Color encodeOdd(Color c) {
-            //return Color.FromArgb(c.A, ((c.R % 2 == 1) ? c.R : c.R - 1), c.G, c.B);
-            return Color.FromArgb(c.A, ((c.R / 2) * 2) + 1, c.G, c.B);
-        }
-
-        //Encodes an even bit
-        private Color encodeEven(Color c) {
-            //return Color.FromArgb(c.A, ((c.R % 2 == 0) ? c.R : c.R - 1), c.G, c.B);
-            return Color.FromArgb(c.A, (c.R / 2) * 2, c.G, c.B);
-        }
-
-        //Decodes a bit, returning 'true' if it is odd or 'false' if it is even
-        public bool decodePixel(Color c)
-        {
-            return (c.R % 2) == 1;
-        }
-
-        //Decodes 8 bits, returning a full byte
-        public byte decodeByte(int index)
-        {
-            return decodeByte(index, pixelArray);
-        }
-
-        public byte decodeByte(int index, Color[] pixelArray)
-        {
-            int val = 0;
-            for (int bit = 0; bit < 8; bit++)
-            {
-                int mask = 128 / (int)(Math.Pow(2, bit));
-
-                val += ((decodePixel(pixelArray[(index * 8) + bit])) ? mask : 0);
-            }
-
-            return (byte)val;
+            */
         }
 
         //Close the form

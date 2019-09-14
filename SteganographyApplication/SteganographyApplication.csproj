@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encoders\UniformEncoder.cs" />
+    <Compile Include="Encoders\Encoder.cs" />
+    <Compile Include="Encrypters\Encrypter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
