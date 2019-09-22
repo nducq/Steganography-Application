@@ -64,12 +64,12 @@ namespace SteganographyProject
             this.encryptionAlgorithmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rSAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encodingAlgorithmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageHashingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mD5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sHA256ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sHA512ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -371,7 +371,7 @@ namespace SteganographyProject
             // rSAToolStripMenuItem
             // 
             this.rSAToolStripMenuItem.Name = "rSAToolStripMenuItem";
-            this.rSAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rSAToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.rSAToolStripMenuItem.Text = "Asymmetric RSA";
             // 
             // encodingAlgorithmToolStripMenuItem
@@ -379,12 +379,6 @@ namespace SteganographyProject
             this.encodingAlgorithmToolStripMenuItem.Name = "encodingAlgorithmToolStripMenuItem";
             this.encodingAlgorithmToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.encodingAlgorithmToolStripMenuItem.Text = "Encoding Algorithm";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
             // 
             // messageHashingToolStripMenuItem
             // 
@@ -402,24 +396,34 @@ namespace SteganographyProject
             this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
             this.noneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.noneToolStripMenuItem.Text = "None";
+            this.noneToolStripMenuItem.Click += new System.EventHandler(this.noneToolStripMenuItem_Click);
             // 
             // mD5ToolStripMenuItem
             // 
             this.mD5ToolStripMenuItem.Name = "mD5ToolStripMenuItem";
             this.mD5ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mD5ToolStripMenuItem.Text = "MD5";
+            this.mD5ToolStripMenuItem.Click += new System.EventHandler(this.mD5ToolStripMenuItem_Click);
             // 
             // sHA256ToolStripMenuItem
             // 
             this.sHA256ToolStripMenuItem.Name = "sHA256ToolStripMenuItem";
             this.sHA256ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sHA256ToolStripMenuItem.Text = "SHA 256";
+            this.sHA256ToolStripMenuItem.Click += new System.EventHandler(this.sHA256ToolStripMenuItem_Click);
             // 
             // sHA512ToolStripMenuItem
             // 
             this.sHA512ToolStripMenuItem.Name = "sHA512ToolStripMenuItem";
             this.sHA512ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sHA512ToolStripMenuItem.Text = "SHA 512";
+            this.sHA512ToolStripMenuItem.Click += new System.EventHandler(this.sHA512ToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
             // 
             // MainForm
             // 

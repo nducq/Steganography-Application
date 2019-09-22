@@ -12,12 +12,12 @@ namespace SteganographyProject
     {
         protected static int charWidth = 8;
 
-        public static Color[] encodeMessage(Color[] pixelArray, Byte[] message)
+        public static Color[] encodeMessage(Color[] pixelArray, Byte[] message, hashTypes selectedHash)
         {
             return pixelArray;
         }
 
-        public static Byte[] decodeMessage(Color[] pixelArray)
+        public static Byte[] decodeMessage(Color[] pixelArray, hashTypes selectedHash)
         {
             return new byte[0];
         }
@@ -25,6 +25,22 @@ namespace SteganographyProject
         public static void setCharWidth(int charWidth)
         {
             Encoder.charWidth = charWidth;
+        }
+
+        protected static Boolean compareHashes(Byte[] hash1, Byte[] hash2)
+        {
+            if (hash1.Length != hash2.Length)
+                return false;
+            else
+            {
+                for (int i = 0; i < hash1.Length; i++)
+                {
+                    if (hash1[i] != hash2[i])
+                        return false;
+
+                }
+            }
+            return true;
         }
 
         protected static Byte[] computeHash(Byte[] message, hashTypes selectedHash)

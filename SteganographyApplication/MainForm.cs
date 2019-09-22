@@ -46,6 +46,7 @@ namespace SteganographyProject
         public MainForm()
         {
             InitializeComponent();
+            noneToolStripMenuItem.Checked = true;
         }
 
         //This function initializes a new RSA CSP, creating a new private/public key pair
@@ -176,7 +177,7 @@ namespace SteganographyProject
             bool padding = oaepPadding.Checked;
             if (rsa != null)
             {
-                Byte[] message = UniformEncoder.decodeMessage(pixelArray);
+                Byte[] message = UniformEncoder.decodeMessage(pixelArray, selectedHash);
 
                 if (rsa.PublicOnly)
                     encryptedOutputTextBox.Text = "*** Public Fields Only ***\n*** Decryption Not Possible***";
@@ -191,7 +192,7 @@ namespace SteganographyProject
 
         private void encodePixelArray(Color[] pixelArray, byte[] message)
         {
-            this.pixelArray = UniformEncoder.encodeMessage(pixelArray, message);
+            this.pixelArray = UniformEncoder.encodeMessage(pixelArray, message, selectedHash);
         }
 
         //Button listener functions:
@@ -306,6 +307,50 @@ namespace SteganographyProject
         private void sha256Hash_CheckedChanged(object sender, EventArgs e)
         {
             selectedHash = hashTypes.SHA256;
+        }
+
+        private void noneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedHash = hashTypes.NONE;
+
+            mD5ToolStripMenuItem.Checked = false;
+            sHA256ToolStripMenuItem.Checked = false;
+            sHA512ToolStripMenuItem.Checked = false;
+
+            noneToolStripMenuItem.Checked = true;
+        }
+
+        private void mD5ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedHash = hashTypes.MD5;
+
+            noneToolStripMenuItem.Checked = false;
+            sHA256ToolStripMenuItem.Checked = false;
+            sHA512ToolStripMenuItem.Checked = false;
+
+            mD5ToolStripMenuItem.Checked = true;
+        }
+
+        private void sHA256ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedHash = hashTypes.SHA256;
+
+            noneToolStripMenuItem.Checked = false;
+            mD5ToolStripMenuItem.Checked = false;
+            sHA512ToolStripMenuItem.Checked = false;
+
+            sHA256ToolStripMenuItem.Checked = true;
+        }
+
+        private void sHA512ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedHash = hashTypes.SHA512;
+
+            noneToolStripMenuItem.Checked = false;
+            mD5ToolStripMenuItem.Checked = false;
+            sHA256ToolStripMenuItem.Checked = false;
+
+            sHA512ToolStripMenuItem.Checked = true;
         }
     }
 }
